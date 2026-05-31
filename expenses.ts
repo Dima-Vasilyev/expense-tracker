@@ -39,3 +39,14 @@ function getMostExpensive(expenses: Expense[]): Expense {
     expense.amount > max.amount ? expense : max,
   );
 }
+
+function getCategorySummary(expenses: Expense[]): Record<string, number> {
+  return expenses.reduce(
+    (summary, expense) => {
+      summary[expense.category] =
+        (summary[expense.category] ?? 0) + expense.amount;
+      return summary;
+    },
+    {} as Record<string, number>,
+  );
+}
